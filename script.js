@@ -14,7 +14,8 @@ let currentType = "college-student";
 let currentModel = "gpt-4o";
 let messages = [];
 let customPrompt = "";
-let savedChats = [];
+let savedChats = []; // persistent chats
+let currentChatIndex = null;
 
 // ===== FUNCTIONS =====
 function setChatType(type) {
@@ -27,14 +28,18 @@ function newChat() {
   const promptInput = prompt("Enter custom prompt (leave blank for preset):");
   customPrompt = promptInput || "";
 
-  if(document.getElementById("tempToggle").checked){
-    messages = [];
+  const isTemp = document.getElementById("tempToggle").checked;
+  messages = [];
+  document.getElementById("messages").innerHTML = "";
+
+  if(!isTemp){
+    savedChats.push([]);
+    currentChatIndex = savedChats.length - 1;
+    updateHistory();
   } else {
-    messages = [];
-    savedChats.push([]); // new persistent chat slot
+    currentChatIndex = null;
   }
 
-  document.getElementById("messages").innerHTML = "";
   addMessage("assistant", customPrompt ? "New chat started with your custom prompt." : `New ${currentType} chat started.`);
 }
 
@@ -69,8 +74,9 @@ async function sendMessage(){
       const reply = data.choices[0].message.content;
       addMessage("assistant", reply);
       messages.push({role:"assistant", content:reply});
-      if(!document.getElementById("tempToggle").checked){
-        savedChats[savedChats.length-1] = messages;
+      if(currentChatIndex !== null){
+        savedChats[currentChatIndex] = messages;
+        updateHistory();
       }
     }else{
       addMessage("assistant","⚠️ No response from API.");
@@ -78,6 +84,26 @@ async function sendMessage(){
   }catch(err){
     addMessage("assistant","⚠️ Error: "+err.message);
   }
+}
+
+// Update sidebar history
+function updateHistory(){
+  const historyUl = document.getElementById("chatHistory");
+  historyUl.innerHTML = "";
+  savedChats.forEach((chat,index)=>{
+    const li = document.createElement("li");
+    li.textContent = `Chat ${index+1} (${chat.length} msgs)`;
+    li.onclick = () => loadChat(index);
+    historyUl.appendChild(li);
+  });
+}
+
+// Load saved chat
+function loadChat(index){
+  currentChatIndex = index;
+  messages = savedChats[index];
+  document.getElementById("messages").innerHTML = "";
+  messages.forEach(m => addMessage(m.role, m.content));
 }
 
 function searchMessages(query){
