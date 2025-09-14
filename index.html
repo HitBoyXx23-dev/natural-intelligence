@@ -20,6 +20,20 @@
       <button onclick="setChatType('storyteller')">Storyteller</button>
     </div>
 
+    <!-- Model selector -->
+    <div id="modelSelector" style="margin-top: 20px;">
+      <label for="modelSelect" style="color: #ffb7c5;">Select Model:</label>
+      <select id="modelSelect" onchange="changeModel()" 
+              style="width: 100%; margin-top: 5px; padding: 5px; border-radius: 8px; border: none; outline: none; background: #2b0033; color: #fff;">
+        <option value="gpt-4o">GPT-4O</option>
+        <option value="gpt-4o-mini">GPT-4O Mini</option>
+        <option value="gpt-4.1-nano">GPT-4.1 Nano</option>
+        <option value="gpt-5-mini">GPT-5 Mini</option>
+        <option value="magistral-small-latest">Magistral Small Latest</option>
+        <option value="kimi-k2-instruct">Kimi K2 Instruct</option>
+      </select>
+    </div>
+
     <!-- Search bar -->
     <input type="text" id="searchInput" placeholder="Search chats (temp)" oninput="searchMessages(this.value)">
   </div>
