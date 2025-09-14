@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Natural Intelligence</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="stylesheet" href="style.css">
@@ -10,49 +11,52 @@
   <div id="sidebar">
     <div id="logo">🌸 Natural Intelligence</div>
 
-    <!-- New Chat -->
-    <button onclick="newChat()">+ New Chat</button>
+    <!-- New Chat & Temporary Toggle -->
+    <div style="margin-bottom: 15px;">
+      <button onclick="newChat()">+ New Chat</button>
+      <label style="color:#ffb7c5; display:block; margin-top:10px;">
+        <input type="checkbox" id="tempToggle" checked>
+        Temporary Chat
+      </label>
+    </div>
 
-    <!-- Chat Type -->
+    <!-- Model Selector -->
+    <label for="modelSelect" style="color:#ffb7c5;">Select Model:</label>
+    <select id="modelSelect" onchange="changeModel()">
+      <option value="gpt-4o">GPT-4O</option>
+      <option value="gpt-4o-mini">GPT-4O Mini</option>
+      <option value="gpt-4.1-nano">GPT-4.1 Nano</option>
+      <option value="gpt-5-mini">GPT-5 Mini</option>
+      <option value="magistral-small-latest">Magistral Small Latest</option>
+      <option value="kimi-k2-instruct">Kimi K2 Instruct</option>
+    </select>
+
+    <!-- Chat Types -->
     <div id="chatTypes">
+      <p style="color:#ffb7c5; margin-top: 15px;">Select Chat Type:</p>
       <button onclick="setChatType('college-student')">College Student</button>
       <button onclick="setChatType('coder')">Coder</button>
       <button onclick="setChatType('storyteller')">Storyteller</button>
     </div>
 
-    <!-- Model Selector -->
-    <div id="modelSelector" style="margin-top: 20px;">
-      <label for="modelSelect" style="color: #ffb7c5;">Select Model:</label>
-      <select id="modelSelect" onchange="changeModel()">
-        <option value="gpt-4o">GPT-4O</option>
-        <option value="gpt-4o-mini">GPT-4O Mini</option>
-        <option value="gpt-4.1-nano">GPT-4.1 Nano</option>
-        <option value="gpt-5-mini">GPT-5 Mini</option>
-        <option value="magistral-small-latest">Magistral Small Latest</option>
-        <option value="kimi-k2-instruct">Kimi K2 Instruct</option>
-      </select>
-    </div>
-
-    <!-- Temporary Toggle -->
-    <div style="margin-top:20px; color:#ffb7c5;">
-      <label>
-        <input type="checkbox" id="tempToggle" checked>
-        Temporary Chat (not saved)
-      </label>
-    </div>
-
     <!-- Search -->
-    <input type="text" id="searchInput" placeholder="Search chats" oninput="searchMessages(this.value)">
+    <input type="text" id="searchInput" placeholder="Search chats" oninput="searchMessages(this.value)" style="margin-top:15px;">
+
+    <!-- Chat History -->
+    <div id="historyContainer">
+      <p style="color:#ffb7c5; margin-top: 15px;">Chat History:</p>
+      <ul id="chatHistory"></ul>
+    </div>
   </div>
 
   <div id="chat">
     <div id="messages"></div>
     <div id="inputBar">
       <input type="text" id="userInput" placeholder="Type a message...">
-      <button onclick="sendMessage()">Send</button>
+      <button id="sendBtn" onclick="sendMessage()">Send</button>
     </div>
   </div>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
