@@ -1,4 +1,3 @@
-/* General Layout */
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
@@ -8,7 +7,6 @@ body {
   height: 100vh;
 }
 
-/* Sidebar */
 #sidebar {
   width: 280px;
   background: linear-gradient(180deg, #1a001a, #2b0033);
@@ -38,13 +36,12 @@ button {
 }
 button:hover { background: #a64ca6; }
 
-/* Chat types and history */
 #chatTypes button { margin-top: 5px; }
 #historyContainer ul { list-style: none; padding:0; margin:0; max-height:200px; overflow-y:auto; }
-#historyContainer li { padding: 8px; margin:5px 0; background:#2b0033; border-radius:8px; cursor:pointer; color:#ffb7c5; transition:0.2s;}
+#historyContainer li { padding: 8px; margin:5px 0; background:#2b0033; border-radius:8px; cursor:pointer; color:#ffb7c5; display:flex; justify-content:space-between; transition:0.2s;}
 #historyContainer li:hover { background:#6a0dad; }
+.deleteBtn { background:#ff4d6d; border:none; border-radius:8px; padding:2px 6px; cursor:pointer; margin-left:5px; color:#fff; font-size:0.8em; }
 
-/* Chat window */
 #chat { flex:1; display:flex; flex-direction:column; }
 #messages { flex:1; overflow-y:auto; padding:15px; }
 .message { margin:8px 0; padding:10px; border-radius:12px; max-width:70%; line-height:1.4; word-wrap: break-word;}
@@ -53,4 +50,3 @@ button:hover { background: #a64ca6; }
 #inputBar { display:flex; padding:10px; border-top:2px solid #a64ca6; background:#1a001a; }
 #userInput { flex:1; padding:12px; border-radius:12px; border:none; outline:none; }
 #sendBtn { margin-left:10px; }
-
