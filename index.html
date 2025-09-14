@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Natural Intelligence</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Natural Intelligence</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="sidebar">
-    <div id="logo">🌸 Natural I</div>
-    
-    <!-- New Chat with Custom Prompt -->
+    <div id="logo">🌸 Natural Intelligence</div>
+
+    <!-- New Chat -->
     <button onclick="newChat()">+ New Chat</button>
 
-    <!-- Preset Chat Types -->
+    <!-- Chat Type -->
     <div id="chatTypes">
-      <button onclick="setChatType('college-student')">College-Student</button>
+      <button onclick="setChatType('college-student')">College Student</button>
       <button onclick="setChatType('coder')">Coder</button>
       <button onclick="setChatType('storyteller')">Storyteller</button>
     </div>
 
-    <!-- Model selector -->
+    <!-- Model Selector -->
     <div id="modelSelector" style="margin-top: 20px;">
       <label for="modelSelect" style="color: #ffb7c5;">Select Model:</label>
-      <select id="modelSelect" onchange="changeModel()" 
-              style="width: 100%; margin-top: 5px; padding: 5px; border-radius: 8px; border: none; outline: none; background: #2b0033; color: #fff;">
+      <select id="modelSelect" onchange="changeModel()">
         <option value="gpt-4o">GPT-4O</option>
         <option value="gpt-4o-mini">GPT-4O Mini</option>
         <option value="gpt-4.1-nano">GPT-4.1 Nano</option>
@@ -34,15 +33,23 @@
       </select>
     </div>
 
-    <!-- Search bar -->
-    <input type="text" id="searchInput" placeholder="Search chats (temp)" oninput="searchMessages(this.value)">
+    <!-- Temporary Toggle -->
+    <div style="margin-top:20px; color:#ffb7c5;">
+      <label>
+        <input type="checkbox" id="tempToggle" checked>
+        Temporary Chat (not saved)
+      </label>
+    </div>
+
+    <!-- Search -->
+    <input type="text" id="searchInput" placeholder="Search chats" oninput="searchMessages(this.value)">
   </div>
 
   <div id="chat">
     <div id="messages"></div>
     <div id="inputBar">
       <input type="text" id="userInput" placeholder="Type a message...">
-      <button id="sendBtn" onclick="sendMessage()">Send</button>
+      <button onclick="sendMessage()">Send</button>
     </div>
   </div>
 
