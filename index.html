@@ -8,55 +8,91 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="sidebar">
+<div id="sidebar">
     <div id="logo">🌸 Natural Intelligence</div>
 
-    <!-- New Chat & Temporary Toggle -->
-    <div style="margin-bottom: 15px;">
-      <button onclick="newChat()">+ New Chat</button>
-      <button onclick="customChat()">🎨 Custom Chat</button>
-      <label style="color:#ffb7c5; display:block; margin-top:10px;">
-        <input type="checkbox" id="tempToggle" checked>
-        Temporary Chat
-      </label>
+    <!-- New & Custom Chat -->
+    <div class="sidebar-section">
+        <button onclick="newChat()">+ New Chat</button>
+        <button onclick="customChat()">🎨 Custom Chat</button>
+        <label>
+            <input type="checkbox" id="tempToggle" checked>
+            Temporary Chat
+        </label>
     </div>
 
     <!-- Model Selector -->
-    <label for="modelSelect" style="color:#ffb7c5;">Select Model:</label>
-    <select id="modelSelect" onchange="changeModel()">
-      <option value="gpt-4o">GPT-4O</option>
-      <option value="gpt-4o-mini">GPT-4O Mini</option>
-      <option value="gpt-4.1-nano">GPT-4.1 Nano</option>
-      <option value="gpt-5-mini">GPT-5 Mini</option>
-      <option value="magistral-small-latest">Magistral Small Latest</option>
-      <option value="kimi-k2-instruct">Kimi K2 Instruct</option>
-    </select>
+    <div class="sidebar-section">
+        <label for="modelSelect">Select Model:</label>
+        <select id="modelSelect" onchange="changeModel()">
+            <option value="gpt-4o">GPT-4O</option>
+            <option value="gpt-4o-mini">GPT-4O Mini</option>
+            <option value="gpt-4.1-nano">GPT-4.1 Nano</option>
+            <option value="gpt-5-mini">GPT-5 Mini</option>
+            <option value="magistral-small-latest">Magistral Small Latest</option>
+            <option value="kimi-k2-instruct">Kimi K2 Instruct</option>
+        </select>
+    </div>
 
     <!-- Chat Types -->
-    <div id="chatTypes">
-      <p style="color:#ffb7c5; margin-top: 15px;">Select Chat Type:</p>
-      <button onclick="setChatType('college-student')">College Student</button>
-      <button onclick="setChatType('coder')">Coder</button>
-      <button onclick="setChatType('storyteller')">Storyteller</button>
+    <div class="sidebar-section">
+        <p>Select Chat Type:</p>
+        <button onclick="setChatType('college-student')">College Student</button>
+        <button onclick="setChatType('coder')">Coder</button>
+        <button onclick="setChatType('storyteller')">Storyteller</button>
+    </div>
+
+    <!-- Roleplay Templates -->
+    <div class="sidebar-section">
+        <p>Roleplay Templates:</p>
+        <button onclick="startTemplate('Anime Hero')">🦸 Anime Hero</button>
+        <button onclick="startTemplate('Mystic Mage')">🧙 Mystic Mage</button>
+        <button onclick="startTemplate('Cute Companion')">🐾 Cute Companion</button>
     </div>
 
     <!-- Search -->
-    <input type="text" id="searchInput" placeholder="Search chats" oninput="searchMessages(this.value)" style="margin-top:15px;">
+    <input type="text" id="searchInput" placeholder="Search chats" oninput="searchMessages(this.value)">
 
     <!-- Chat History -->
-    <div id="historyContainer">
-      <p style="color:#ffb7c5; margin-top: 15px;">Chat History:</p>
-      <ul id="chatHistory"></ul>
+    <div class="sidebar-section">
+        <p>Chat History:</p>
+        <ul id="chatHistory"></ul>
     </div>
-  </div>
 
-  <div id="chat">
+    <!-- Settings Button -->
+    <div class="sidebar-section">
+        <button onclick="openSettings()">⚙️ Settings</button>
+    </div>
+</div>
+
+<div id="chat">
     <div id="messages"></div>
     <div id="inputBar">
-      <input type="text" id="userInput" placeholder="Type a message...">
-      <button id="sendBtn" onclick="sendMessage()">Send</button>
+        <input type="text" id="userInput" placeholder="Type a message...">
+        <button id="sendBtn" onclick="sendMessage()">Send</button>
     </div>
-  </div>
+</div>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeSettings()">&times;</span>
+        <h2>Settings</h2>
+        <label>
+            <input type="checkbox" id="darkModeToggle">
+            Dark Mode
+        </label>
+        <label>
+            Font Size:
+            <select id="fontSizeSelect">
+                <option value="14px">Small</option>
+                <option value="16px" selected>Medium</option>
+                <option value="18px">Large</option>
+            </select>
+        </label>
+        <button onclick="clearAllChats()">Clear All Chats</button>
+    </div>
+</div>
 
 <script src="script.js"></script>
 </body>
